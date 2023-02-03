@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FrontMaui.Pages.SeleccionSala_Page"
+             Title="SeleccionSala_Page"
+             xmlns:model="clr-namespace:FrontMaui.ViewModels">
+    <ContentPage.BindingContext>
+        <model:SeleccionSala_VM/>
+    </ContentPage.BindingContext>
+
+    <VerticalStackLayout>
+        <ListView HasUnevenRows="True" Background="AliceBlue" Margin="40,0,40,10" HorizontalOptions="Center"
+                  ItemsSource="{Binding ListaSalas}"
+                  SelectedItem="{Binding SalaSeleccionada}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Image Grid.RowSpan="2" Margin="0,0,30,0"
+                               Source="enter.png"
+                                   WidthRequest="70"
+                                       HeightRequest="100"
+                                    Aspect="AspectFit"/>
+
+                            <Label Grid.Row="0" Grid.Column="1" VerticalOptions="End" Margin="10,0,0,0"
+                               Text="{Binding idSala}" FontSize="Medium"  FontAttributes="Bold" />
+
+                            <Label Grid.Row="1" Grid.Column="1" VerticalOptions="Start" Margin="10,0,0,0"
+                               Text="{Binding nombreSala}" FontSize="Medium"  FontAttributes="Bold"/>
+                            
+                            <HorizontalStackLayout Grid.RowSpan="2" Grid.Column="2" VerticalOptions="Center" Margin="30,0,0,0" >
+                                <Label Text="{Binding usuarios.Length}" FontSize="Medium"  FontAttributes="Bold"/>
+                                <Label Text="/2" FontSize="Medium"  FontAttributes="Bold"/>
+                            </HorizontalStackLayout>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.Footer>
+                <StackLayout>
+                    <Label HeightRequest="60"/>
+                </StackLayout>
+            </ListView.Footer>
+        </ListView>
+    </VerticalStackLayout>
+</ContentPage>
